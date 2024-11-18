@@ -1,0 +1,11 @@
+:root {
+    --text-primary: #1a1a1a;
+    --text-secondary: #666;
+    --background: #fff;
+    --max-width: 1400px;
+    --content-width: 850px;
+    --side-width: 260px;
+    --font-mono: "SF Mono", "Roboto Mono", Consolas, monospace;
+}
+
+/* ... rest of your CSS ... */ 

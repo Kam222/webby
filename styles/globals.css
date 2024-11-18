@@ -1,0 +1,109 @@
+@layer base {
+  :root {
+    --noise-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  body {
+    @apply transition-colors duration-300;
+    background-image: var(--noise-texture);
+    background-position: 0 0;
+    background-size: 200px 200px;
+  }
+
+  .dark body {
+    background: var(--bg-primary);
+    background-image: 
+      linear-gradient(to bottom, transparent 0%, var(--accent-blue) 100%),
+      var(--noise-texture);
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    box-shadow: inset 0 0 100px hsl(225, 40%, 2%);
+  }
+
+  .dark {
+    /* Core color palette - sophisticated and deep */
+    --bg-primary: hsl(225, 40%, 4%);
+    --bg-secondary: hsl(224, 35%, 6%);
+    --bg-tertiary: hsl(223, 32%, 8%);
+    
+    /* Elegant gradient overlays */
+    --gradient-subtle: linear-gradient(
+      to bottom right,
+      hsl(225, 40%, 6%) 0%,
+      hsl(225, 35%, 4%) 50%,
+      hsl(225, 40%, 5%) 100%
+    );
+    
+    /* Sophisticated accents */
+    --accent-blue: hsl(220, 100%, 86%, 0.08);
+    --accent-glow: 0 0 20px hsl(220, 100%, 86%, 0.03);
+    
+    /* Intellectual typography */
+    font-feature-settings: "liga" 1, "ss01" 1, "ss02" 1, "ss03" 1;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.02em;
+  }
+
+  /* Elegant card styling */
+  .dark .card {
+    background: var(--bg-secondary);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(225, 40%, 10%, 0.3);
+    box-shadow: 
+      0 4px 12px hsl(225, 40%, 2%, 0.5),
+      0 0 0 1px hsl(225, 40%, 10%, 0.2);
+  }
+
+  /* Sophisticated hover states */
+  .dark .hover-glow:hover {
+    box-shadow: var(--accent-glow);
+    border-color: hsl(220, 100%, 86%, 0.1);
+  }
+
+  /* Enhanced text rendering */
+  .dark .prose {
+    --tw-prose-body: hsl(220, 20%, 80%);
+    --tw-prose-headings: hsl(220, 40%, 92%);
+    --tw-prose-links: hsl(220, 95%, 77%);
+    letter-spacing: -0.011em;
+    line-height: 1.75;
+  }
+
+  /* Elegant selection styling */
+  .dark ::selection {
+    background: hsl(220, 95%, 77%, 0.2);
+    text-shadow: none;
+  }
+
+  /* Reading mode specific styles */
+  .dark[data-reading-mode='focus'] {
+    --line-height-article: 1.8;
+    --paragraph-spacing: 1.8em;
+  }
+
+  .dark[data-reading-mode='study'] {
+    --font-size-base: 1.05rem;
+    --line-height-article: 1.7;
+  }
+}
+
+/* Enhanced scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(225, 40%, 12%);
+  border: 3px solid var(--bg-primary);
+  border-radius: 6px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(225, 40%, 16%);
+} 
