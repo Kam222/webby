@@ -67,7 +67,7 @@ const MaturityBadge = () => (
 
 const LettingGoPost = () => {
   useEffect(() => {
-    document.title = 'The Delicate Art of Letting Go | notkhalid';
+    document.title = 'the delicate art of letting go | khalid';
   }, []);
   
   return (

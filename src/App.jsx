@@ -268,7 +268,7 @@ function App() {
                 <Route path="/" element={
                   <div className="relative max-w-4xl mx-auto px-12 py-16 lg:pl-32">
                     {useEffect(() => {
-                      document.title = 'Khalid Ali';
+                      document.title = 'khalid ali';
                     }, [])}
                     
                     <main className="space-y-8">

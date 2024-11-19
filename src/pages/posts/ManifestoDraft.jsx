@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 const ManifestoDraft = () => {
   useEffect(() => {
-    document.title = 'Manifesto Draft | khalid';
+    document.title = 'manifesto draft | khalid';
   }, []);
 
   return (

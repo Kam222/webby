@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 const IagoPost = () => {
   useEffect(() => {
-    document.title = "Iago Wasn't Evil | khalid";
+    document.title = 'iago wasn't evil | khalid';
   }, []);
   
   return (
