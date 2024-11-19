@@ -199,14 +199,14 @@ const Portfolio = () => {
               <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">[ordered by proficiency]</span>
             </h3>
             <div className="text-gray-600 dark:text-gray-300 space-y-2">
-              <p>Primary: Python (data science, ML pipelines, web scraping)</p>
-              <p>Secondary: R (statistical analysis), JavaScript (web), SQL (PostgreSQL), LaTeX</p>
+              <p>Primary: Python </p>
+              <p>Secondary: R, JavaScript, SQL, LaTeX</p>
             </div>
           </div>
           
           <div>
             <h3 className="font-medium text-gray-800 dark:text-gray-100 mb-4 flex items-center">
-              <span>Data Science & ML</span>
+              <span>Data Science & ~ML</span>
               <span className="text-sm text-gray-500 dark:text-gray-400 ml-2"></span>
             </h3>
             <div className="text-gray-600 dark:text-gray-300 space-y-2">
