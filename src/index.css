@@ -4,27 +4,12 @@
 
 @layer base {
   body {
-    font-family: var(--font-mono);
+    font-family: "SF Mono", "Roboto Mono", Consolas, monospace;
   }
 }
 
-/* System font variables */
-:root {
-  --font-mono: "Roboto Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-}
 
-/* Font loading */
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Roboto Mono'),
-       url('/fonts/RobotoMono-Regular.woff2') format('woff2'),
-       url('/fonts/RobotoMono-Regular.woff') format('woff');
-}
-
-/* Prose styles */
+/* Add to your existing Tailwind prose styles */
 .prose {
   --tw-prose-body: theme('colors.gray.700');
   --tw-prose-headings: theme('colors.gray.900');
@@ -71,19 +56,184 @@
   }
 }
 
-/* Dark mode enhancements */
+/* Add subtle transitions for text */
+.dark .text-gray-800 {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Enhanced dark mode text rendering */
 .dark {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dark .text-gray-800 {
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+/* Add font loading with fallbacks */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto Mono'),
+       url('/fonts/RobotoMono-Regular.woff2') format('woff2'),
+       url('/fonts/RobotoMono-Regular.woff') format('woff');
 }
 
-/* Replace with your actual serif font */
-@import url('https://fonts.googleapis.com/css2?family=Your+Serif+Font&display=swap');
+/* Rest of your styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.font-serif {
-  font-family: 'Your Serif Font', Georgia, serif;
+/* Add a system font fallback stack */
+:root {
+  --font-mono: "Roboto Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+body {
+  font-family: var(--font-mono);
+}
+
+:root {
+  /* Light theme defaults */
+  --bg-primary: #FCFCFC;
+  --bg-secondary: #FAFAFA;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+}
+
+.dark {
+  --bg-primary: hsl(222, 47%, 11%);
+  --bg-secondary: hsl(222, 47%, 13%);
+  --text-primary: hsl(0, 0%, 98%);
+  --text-secondary: hsl(220, 15%, 85%);
+  --glow-sm: 0 0 15px rgba(255, 255, 255, 0.1);
+  --glow-md: 0 0 20px rgba(255, 255, 255, 0.15);
+  --accent-primary: hsl(220, 100%, 90%);
+  --accent-secondary: hsl(220, 90%, 80%);
+}
+
+/* Add these sophisticated UI variables */
+:root {
+  /* Light theme refinements */
+  --nav-bg-light: rgba(255, 255, 255, 0.6);
+  --nav-border-light: rgba(240, 240, 240, 0.8);
+  --nav-shadow-light: 
+    0 1px 0 rgba(17,17,26,0.05),
+    0 0 8px rgba(17,17,26,0.1);
+    
+  /* Dark theme refinements */
+  --nav-bg-dark: rgba(10, 15, 30, 0.8);
+  --nav-border-dark: rgba(30, 35, 50, 0.8);
+  --nav-shadow-dark: 
+    0 1px 0 rgba(0,0,0,0.1),
+    0 0 8px rgba(0,0,0,0.2);
+    
+  /* Hover state refinements */
+  --hover-bg-light: rgba(240, 240, 240, 0.8);
+  --hover-bg-dark: rgba(30, 35, 50, 0.8);
+}
+
+/* Enhanced navigation animations */
+.nav-link {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+  transform: translateY(-1px);
+}
+
+/* Refined backdrop blur */
+.nav-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Add these to ensure consistent background colors */
+:root {
+  --page-bg-light: #FAFAF9;
+  --page-bg-dark: #0A0F1E;
+  --surface-light: #FAFAF9;
+  --text-primary-light: #262626;
+  --text-secondary-light: #525252;
+}
+
+body {
+  @apply bg-[#FAFAF9] dark:bg-[#0A0F1E];
+  background-image: 
+    linear-gradient(to bottom, transparent, rgba(0,0,0,0.01)),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+}
+
+/* Enhanced surface treatment */
+.nav-surface {
+  background-image: none;
+}
+
+/* Update text colors to match new palette */
+.text-gray-900 {
+  color: var(--text-primary-light);
+}
+
+.text-gray-600 {
+  color: var(--text-secondary-light);
+}
+
+/* Remove any conflicting background colors from PostsV2 or other pages */
+
+/* Ensure consistent base colors */
+:root {
+  --page-bg: #FAFAF9;
+  --page-bg-dark: #0A0F1E;
+}
+
+/* Apply the same background to both body and nav */
+body {
+  background-color: var(--page-bg);
+  @apply dark:bg-[#0A0F1E];
+}
+
+/* Remove any conflicting background treatments */
+.nav-surface {
+  background-image: none;
+}
+
+/* Remove any gradient overlays that might affect color */
+.absolute.inset-0 {
+  background-image: none;
+}
+
+/* Base background color for the entire app */
+:root {
+  --page-bg: #FAFAF9;
+  --page-bg-dark: #0A0F1E;
+}
+
+body {
+  background-color: var(--page-bg);
+  @apply dark:bg-[var(--page-bg-dark)];
+}
+
+/* Remove any page-specific background colors */
+.min-h-screen {
+  background: transparent;
+}
+
+@font-face {
+  font-family: 'GT Alpina';
+  src: url('/fonts/GT-Alpina-Standard-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Spectral';
+  src: url('/fonts/Spectral-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Söhne Mono';
+  src: url('/fonts/SohneMono-Buch.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
 }

@@ -3,17 +3,18 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Moon, Sun, Stars } from 'lucide-react';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import PostsV2 from './pages/PostsV2';
-import SeamlessnessPost from './pages/posts/SeamlessnessPost';
 import { MarginNote } from './components/MarginNote';
 import concepts from './data/concepts';
-import Research from './pages/Research';
 import CVPage from './pages/CVPage';
 import { AtmosphericBackground } from './components/AtmosphericBackground';
 import { ThemeToggle } from './components/ThemeToggle';
-import ManifestoPost from './pages/posts/ManifestoPost';
-import ManifestoDraft from './pages/posts/ManifestoDraft';
-import IagoPost from './pages/posts/IagoPost';
-import LettingGoPost from './pages/posts/LettingGoPost';
+import ManifestoDraft from './pages/posts/ManifestoDraft.jsx';
+import IagoPost from './pages/posts/IagoPost.jsx';
+import LettingGoPost from './pages/posts/LettingGoPost.jsx';
+import SeamlessnessPost from './pages/posts/SeamlessnessPost';
+import Research from './pages/Research';
+import ContactTrigger from './components/ContactTrigger';
+import TypewriterText from './components/TypewriterText';
 
 // Enhanced theme system with reading modes
 const useTheme = () => {
@@ -29,33 +30,32 @@ const useTheme = () => {
     const root = document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');
-      // Refined dark mode colors
-      root.style.setProperty('--bg-primary', 'hsl(222, 47%, 11%)');
-      root.style.setProperty('--bg-secondary', 'hsl(222, 47%, 13%)');
-      root.style.setProperty('--text-primary', 'hsl(0, 0%, 98%)');
-      root.style.setProperty('--text-secondary', 'hsl(220, 15%, 85%)');
+      root.style.setProperty('--bg-primary', 'hsl(222, 47%, 8%)');
+      root.style.setProperty('--bg-secondary', 'hsl(222, 47%, 10%)');
       
-      // Enhanced glow effects
-      root.style.setProperty('--glow-sm', '0 0 15px rgba(255, 255, 255, 0.1)');
-      root.style.setProperty('--glow-md', '0 0 20px rgba(255, 255, 255, 0.15)');
+      root.style.setProperty('--text-primary', 'hsl(220, 25%, 98%)');
+      root.style.setProperty('--text-secondary', 'hsl(220, 20%, 85%)');
+      root.style.setProperty('--text-tertiary', 'hsl(220, 15%, 65%)');
       
-      // Refined accents
-      root.style.setProperty('--accent-primary', 'hsl(220, 100%, 90%)');
-      root.style.setProperty('--accent-secondary', 'hsl(220, 90%, 80%)');
+      root.style.setProperty('--accent-primary', 'hsl(220, 95%, 85%)');
+      root.style.setProperty('--accent-secondary', 'hsl(220, 90%, 75%)');
+      
+      root.style.setProperty('--hover-bg', 'hsl(222, 47%, 15%)');
+      
+      root.style.setProperty('--glow-sm', '0 0 15px hsla(220, 100%, 90%, 0.1)');
+      root.style.setProperty('--glow-md', '0 0 20px hsla(220, 100%, 90%, 0.15)');
     } else {
       root.classList.remove('dark');
-      // Reset variables
       root.style.removeProperty('--bg-primary');
       root.style.removeProperty('--bg-secondary');
       root.style.removeProperty('--text-primary');
       root.style.removeProperty('--text-secondary');
-      root.style.removeProperty('--glow-sm');
-      root.style.removeProperty('--glow-md');
+      root.style.removeProperty('--text-tertiary');
       root.style.removeProperty('--accent-primary');
       root.style.removeProperty('--accent-secondary');
-      root.style.removeProperty('--gradient-overlay');
-      root.style.removeProperty('--shadow-color');
-      root.style.removeProperty('--shadow-glow');
+      root.style.removeProperty('--hover-bg');
+      root.style.removeProperty('--glow-sm');
+      root.style.removeProperty('--glow-md');
     }
     localStorage.setItem('theme', theme);
   }, [theme]);
@@ -106,12 +106,35 @@ const ConceptText = ({ text, concept }) => {
 // Add this line to export ConceptText
 export { ConceptText };
 
+// Then, create a Books component
+const Books = () => (
+  <div className="relative max-w-4xl mx-auto px-12 py-16 lg:pl-32">
+    <div className="prose dark:prose-invert">
+      <h1 className="font-mono text-2xl">Books</h1>
+      <p className="font-mono text-sm text-gray-600 dark:text-gray-400">
+        Coming soon...
+      </p>
+    </div>
+  </div>
+);
+
 function App() {
   const [theme, setTheme] = useTheme();
   const { scrollY } = useScroll();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const location = useLocation();
   const currentPath = location.pathname;
+  const [isTypewriterComplete, setIsTypewriterComplete] = useState(false);
+  const [isFirstVisit, setIsFirstVisit] = useState(() => {
+    return !localStorage.getItem('hasVisited');
+  });
+
+  // Add this useEffect to set the flag after first visit
+  useEffect(() => {
+    if (isFirstVisit) {
+      localStorage.setItem('hasVisited', 'true');
+    }
+  }, [isFirstVisit]);
 
   // Parallax effect for mouse movement
   useEffect(() => {
@@ -128,11 +151,18 @@ function App() {
   // Dynamic background position based on scroll
   const backgroundY = useTransform(scrollY, [0, 1000], ['0%', '20%']);
 
+  // Move useEffect outside of Route
+  useEffect(() => {
+    if (location.pathname === '/') {
+      document.title = 'khalid ali';
+    }
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen relative 
       transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
       bg-gradient-to-b from-[#FCFCFC] via-[#FAFAFA] to-[#F8F8F8]
-      dark:from-[#0A0F1E] dark:via-[#0C1124] dark:to-[#0E1329]">
+      dark:from-[var(--bg-primary)] dark:via-[var(--bg-secondary)] dark:to-[hsl(222,47%,12%)]">
       {/* Refined base gradient - more paper-like in light, deeper in dark */}
       <div className="fixed inset-0 
         bg-gradient-to-b from-[#FCFCFC] via-[#FAFAFA] to-[#F8F8F8]
@@ -193,60 +223,46 @@ function App() {
       {/* Content */}
       <div className="relative">
         <div className="fixed top-0 left-0 right-0 z-50">
-          {/* Subtle gradient backdrop */}
-          <div className="absolute inset-0 bg-white/70 dark:bg-[#0A0F1E]/70 backdrop-blur-[8px] border-b border-gray-200/10" />
+          {/* Even more gradual fade with multiple stops */}
+          <div className="absolute inset-0 
+            bg-gradient-to-b
+            from-[#FAFAF9]/60 
+            via-[#FAFAF9]/55 via-[#FAFAF9]/45 
+            to-[#FAFAF9]/0
+            dark:from-[#0A0F1E]/60 
+            dark:via-[#0A0F1E]/55 dark:via-[#0A0F1E]/45 
+            dark:to-[#0A0F1E]/0
+            backdrop-blur-[20px]" 
+          />
           
-          <nav className="relative max-w-4xl mx-auto px-12 lg:pl-32 py-6 
-            font-mono text-sm tracking-[0.3px]">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-8">
-                <Link 
-                  to="/" 
-                  className={`relative group transition-colors duration-200
-                    ${currentPath === '/' 
-                      ? 'text-gray-800/90 dark:text-gray-200/90' 
-                      : 'text-gray-600/80 dark:text-gray-300/80 hover:text-gray-800 dark:hover:text-gray-100'}`}
-                >
-                  home
-                  <span className="absolute -inset-x-2 -inset-y-1 
-                    bg-gray-800/[0.05] dark:bg-gray-200/[0.05] 
-                    rounded opacity-0 group-hover:opacity-100 -z-10 
-                    transform scale-95 group-hover:scale-100 
-                    transition-all duration-300" 
-                  />
-                </Link>
-                
-                <Link 
-                  to="/posts" 
-                  className={`transition-colors duration-200
-                    ${currentPath === '/posts' 
-                      ? 'text-gray-800/90 dark:text-gray-200/90' 
-                      : 'text-gray-600/80 dark:text-gray-300/80 hover:text-gray-800 dark:hover:text-gray-100'}`}
-                >
-                  posts
-                </Link>
-                
-                <Link 
-                  to="/cv" 
-                  className={`transition-colors duration-200
-                    ${currentPath === '/cv' 
-                      ? 'text-gray-800/90 dark:text-gray-200/90' 
-                      : 'text-gray-600/80 dark:text-gray-300/80 hover:text-gray-800 dark:hover:text-gray-100'}`}
-                >
-                  cv
-                </Link>
-                
-                <Link 
-                  to="/books" 
-                  className={`transition-colors duration-200
-                    ${currentPath === '/books' 
-                      ? 'text-gray-800/90 dark:text-gray-200/90' 
-                      : 'text-gray-600/80 dark:text-gray-300/80 hover:text-gray-800 dark:hover:text-gray-100'}`}
-                >
-                  books
-                </Link>
-              </div>
-              
+          <nav className="relative max-w-4xl mx-auto px-12 lg:pl-32 h-[60px] flex items-center">
+            <div className="flex items-center space-x-8 font-mono text-sm tracking-[0.3px]">
+              <Link 
+                to="/" 
+                className={`text-[#262626]/80 dark:text-[#E5E5E5]/80 hover:text-[#262626] dark:hover:text-[#E5E5E5] transition-colors duration-300
+                  ${currentPath === '/' ? 'text-[#262626] dark:text-[#E5E5E5]' : ''}`}>
+                home
+              </Link>
+              <Link 
+                to="/cv" 
+                className={`text-[#262626]/80 dark:text-[#E5E5E5]/80 hover:text-[#262626] dark:hover:text-[#E5E5E5] transition-colors duration-300
+                  ${currentPath === '/cv' ? 'text-[#262626] dark:text-[#E5E5E5]' : ''}`}>
+                cv
+              </Link>
+              <Link 
+                to="/posts" 
+                className={`text-[#262626]/80 dark:text-[#E5E5E5]/80 hover:text-[#262626] dark:hover:text-[#E5E5E5] transition-colors duration-300
+                  ${currentPath === '/posts' ? 'text-[#262626] dark:text-[#E5E5E5]' : ''}`}>
+                posts
+              </Link>
+              <Link 
+                to="/books" 
+                className={`text-[#262626]/80 dark:text-[#E5E5E5]/80 hover:text-[#262626] dark:hover:text-[#E5E5E5] transition-colors duration-300
+                  ${currentPath === '/books' ? 'text-[#262626] dark:text-[#E5E5E5]' : ''}`}>
+                books
+              </Link>
+            </div>
+            <div className="ml-auto">
               <ThemeToggle theme={theme} setTheme={setTheme} />
             </div>
           </nav>
@@ -267,101 +283,104 @@ function App() {
               <Routes location={location}>
                 <Route path="/" element={
                   <div className="relative max-w-4xl mx-auto px-12 py-16 lg:pl-32">
-                    {useEffect(() => {
-                      document.title = 'khalid ali';
-                    }, [])}
-                    
                     <main className="space-y-8">
-                      <motion.h1 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, ease: [0.2, 0.65, 0.3, 0.9] }}
-                        className="font-[-apple-system,BlinkMacSystemFont,'Inter',sans-serif] text-[32px] font-semibold tracking-[-0.5px] text-gray-900 dark:text-white mb-[30px]"
-                      >
-                        Hi, I'm Khalid.
-                      </motion.h1>
-                      <motion.div className="space-y-4">
-                        <motion.p 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.1, ease: [0.2, 0.65, 0.3, 0.9] }}
-                          className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                        >
-                          I'm a researcher, programmer, artist, and writer.
-                        </motion.p>
+                      <div className="mb-[30px]">
+                        {isFirstVisit ? (
+                          <TypewriterText 
+                            text="Hi, I'm Khalid."
+                            className="font-[-apple-system,BlinkMacSystemFont,'Inter',sans-serif] text-[32px] font-semibold tracking-[-0.5px] text-gray-900 dark:text-white"
+                            onComplete={() => setIsTypewriterComplete(true)}
+                          />
+                        ) : (
+                          <h1 className="font-[-apple-system,BlinkMacSystemFont,'Inter',sans-serif] text-[32px] font-semibold tracking-[-0.5px] text-gray-900 dark:text-white">
+                            Hi, I'm Khalid.
+                          </h1>
+                        )}
+                      </div>
+                      <AnimatePresence>
+                        {(isTypewriterComplete || !isFirstVisit) && (
+                          <motion.div 
+                            className="space-y-4"
+                            initial={isFirstVisit ? { opacity: 0 } : false}
+                            animate={isFirstVisit ? { opacity: 1 } : false}
+                            transition={{
+                              duration: 1.5,
+                              ease: [0.25, 0.1, 0.25, 1]
+                            }}
+                          >
+                            <motion.p 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.6, delay: 0.2 }}
+                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
+                            >
+                              I'm a researcher, programmer, artist, and writer.
+                            </motion.p>
 
-                        <motion.p 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
-                          className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                        >
-                          Lately, I've been thinking a lot about{' '}
-                          <ConceptText text="legal architectures" concept={concepts.legalArchitectures} />,{' '}
-                          <ConceptText text="governance entropy" concept={concepts.governanceEntropy} />,{' '}
-                          <ConceptText text="decision boundaries" concept={concepts.decisionBoundaries} />, and{' '}
-                          <ConceptText text="transitions" concept={concepts.transitions} />.
-                        </motion.p>
+                            <motion.p 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
+                            >
+                              Lately, I've been thinking a lot about{' '}
+                              <ConceptText text="legal architectures" concept={concepts.legalArchitectures} />,{' '}
+                              <ConceptText text="governance entropy" concept={concepts.governanceEntropy} />,{' '}
+                              <ConceptText text="decision boundaries" concept={concepts.decisionBoundaries} />, and{' '}
+                              <ConceptText text="transitions" concept={concepts.transitions} />.
+                            </motion.p>
 
-                        <motion.p 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.3, ease: [0.2, 0.65, 0.3, 0.9] }}
-                          className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                        >
-                          Depending on when you're reading this, I'm working on developing frameworks for compute attribution in AI systems, 
-                          examining how technical and legal definitions of computational resource usage can be reconciled in ways that are 
-                          both meaningful and enforceable.
-                        </motion.p>
+                            <motion.p 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4, delay: 0.3, ease: [0.2, 0.65, 0.3, 0.9] }}
+                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
+                            >
+                              Depending on when you're reading this, I'm working on developing frameworks for compute attribution in AI systems, 
+                              examining how technical and legal definitions of computational resource usage can be reconciled in ways that are 
+                              both meaningful and enforceable.
+                            </motion.p>
 
-                        <motion.p 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.4, ease: [0.2, 0.65, 0.3, 0.9] }}
-                          className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                        >
-                          Prior to this, I was a student at the University of Minnesota where I studied politics, philosophy and econ.
-                        </motion.p>
+                            <motion.p 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4, delay: 0.4, ease: [0.2, 0.65, 0.3, 0.9] }}
+                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
+                            >
+                              Prior to this, I was a student at the University of Minnesota where I studied politics, philosophy and econ.
+                            </motion.p>
 
-                        <motion.p 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
-                          className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                        >
-                          Feel free to poke around this website, which serves as a sampling of what I am currently reading, writing, and thinking about.
-                        </motion.p>
+                            <motion.p 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4, delay: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
+                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
+                            >
+                              Feel free to poke around this website, which serves as a sampling of what I am currently reading, writing, and thinking about.
+                            </motion.p>
 
-                        <motion.p 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.6, ease: [0.2, 0.65, 0.3, 0.9] }}
-                          className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                        >
-                          If what you find interests you, please get in touch.
-                        </motion.p>
-                      </motion.div>
+                            <motion.p 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4, delay: 0.6, ease: [0.2, 0.65, 0.3, 0.9] }}
+                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
+                            >
+                              If what you find interests you, <ContactTrigger />
+                            </motion.p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </main>
                   </div>
                 } />
                 <Route path="/posts" element={<PostsV2 />} />
                 <Route path="/posts/iago-wasnt-evil" element={<IagoPost />} />
-                <Route path="/posts/seamlessness-algorithmic-governance" element={<SeamlessnessPost />} />
                 <Route path="/cv" element={<CVPage />} />
-                <Route path="/books" element={
-                  <div className="relative max-w-4xl mx-auto px-12 py-16 lg:pl-32">
-                    <div className="prose dark:prose-invert">
-                      <h1 className="font-mono text-2xl">Books</h1>
-                      <p className="font-mono text-sm text-gray-600 dark:text-gray-400">
-                        Coming soon...
-                      </p>
-                    </div>
-                  </div>
-                } />
-                <Route path="/research" element={<Research />} />
-                <Route path="/posts/manifesto" element={<ManifestoPost />} />
+                <Route path="/books" element={<Books />} />
                 <Route path="/posts/manifesto-draft" element={<ManifestoDraft />} />
                 <Route path="/posts/letting-go" element={<LettingGoPost />} />
+                <Route path="/posts/seamlessness-post" element={<SeamlessnessPost />} />
+                <Route path="/research" element={<Research />} />
               </Routes>
             </motion.div>
           </AnimatePresence>

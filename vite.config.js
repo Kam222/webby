@@ -9,14 +9,15 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  server: {
-    port: 5173,
-    host: true,
+    extensions: ['.js', '.jsx', '.json']
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    copyPublicDir: true
+    // Copy _redirects to build output
+    rollupOptions: {
+      input: {
+        main: './index.html',
+      },
+    },
   },
 })
