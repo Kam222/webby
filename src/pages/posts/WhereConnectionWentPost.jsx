@@ -34,7 +34,7 @@ const FadeInSection = ({ children, delay = 0 }) => {
           y: 0,
           filter: "blur(0px)",
           transition: {
-            duration: 0.9,
+            duration: 0.5,
             ease: [0.23, 1, 0.32, 1],
             delay: delay
           }
