@@ -209,6 +209,44 @@ const LargeBlogImage = ({ src, alt, caption }) => {
   );
 };
 
+const PortraitImage = ({ src, alt, caption }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
+  return (
+    <figure ref={ref} className="my-16 max-w-[400px] mx-auto relative">
+      <div className="relative overflow-hidden rounded-lg">
+        <motion.div
+          style={{ y }}
+          className="will-change-transform"
+        >
+          <div className="relative">
+            <img
+              src={`/images/${src}`}
+              alt={alt}
+              className="w-full aspect-[9/16] object-cover rounded-lg
+                shadow-[inset_0_0_100px_rgba(0,0,0,0.1)]"
+            />
+            <div className="absolute inset-0 rounded-lg shadow-[inset_0_0_100px_rgba(0,0,0,0.1)]" />
+          </div>
+        </motion.div>
+      </div>
+      {caption && (
+        <figcaption className="text-center mt-4
+          text-[13px] text-gray-400/60 dark:text-gray-500/60 
+          font-spectral italic tracking-wide">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+};
+
 const SubtleText = ({ children }) => (
   <p className="text-center font-spectral text-lg text-gray-500 dark:text-gray-400 my-16 italic leading-relaxed">
     {children}
@@ -519,8 +557,8 @@ const LettingGoPost = () => {
 
           <LargeBlogImage
             src="monkbythesea.jpeg"
-            alt="The Monk by the Sea painting"
-            caption="The Monk by the Sea, Caspar David Friedrich"
+            alt="Monk by the Sea painting"
+            caption="Monk by the Sea - Caspar David Friedrich (1810)"
           />
 
           <div className="prose-container">
@@ -648,15 +686,17 @@ const LettingGoPost = () => {
             </FadeInSection>
 
             <FadeInSection>
-              <Quote>
+              <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
                 Do you ever pause to wonder if a moment is the last time you'll experience something?
-              </Quote>
+              </p>
             </FadeInSection>
 
             <FadeInSection>
-              <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 italic text-center font-normal">
-                every now and then the universe shows off
-              </p>
+              <PortraitImage
+                src="lights.jpeg"
+                alt="Northern lights dancing across the night sky"
+                caption="Every now and then, the universe shows off"
+              />
             </FadeInSection>
 
             <FadeInSection>

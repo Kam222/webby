@@ -15,6 +15,7 @@ import SeamlessnessPost from './pages/posts/SeamlessnessPost';
 import Research from './pages/Research';
 import ContactTrigger from './components/ContactTrigger';
 import TypewriterText from './components/TypewriterText';
+import WhereConnectionWentPost from './pages/posts/WhereConnectionWentPost'; 
 
 // Enhanced theme system with reading modes
 const useTheme = () => {
@@ -124,17 +125,6 @@ function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const location = useLocation();
   const currentPath = location.pathname;
-  const [isTypewriterComplete, setIsTypewriterComplete] = useState(false);
-  const [isFirstVisit, setIsFirstVisit] = useState(() => {
-    return !localStorage.getItem('hasVisited');
-  });
-
-  // Add this useEffect to set the flag after first visit
-  useEffect(() => {
-    if (isFirstVisit) {
-      localStorage.setItem('hasVisited', 'true');
-    }
-  }, [isFirstVisit]);
 
   // Parallax effect for mouse movement
   useEffect(() => {
@@ -285,91 +275,50 @@ function App() {
                   <div className="relative max-w-4xl mx-auto px-12 py-16 lg:pl-32">
                     <main className="space-y-8">
                       <div className="mb-[30px]">
-                        {isFirstVisit ? (
-                          <TypewriterText 
-                            text="Hi, I'm Khalid."
-                            className="font-[-apple-system,BlinkMacSystemFont,'Inter',sans-serif] text-[32px] font-semibold tracking-[-0.5px] text-gray-900 dark:text-white"
-                            onComplete={() => setIsTypewriterComplete(true)}
-                          />
-                        ) : (
-                          <h1 className="font-[-apple-system,BlinkMacSystemFont,'Inter',sans-serif] text-[32px] font-semibold tracking-[-0.5px] text-gray-900 dark:text-white">
-                            Hi, I'm Khalid.
-                          </h1>
-                        )}
+                        <h1 className="font-[-apple-system,BlinkMacSystemFont,'Inter',sans-serif] text-[32px] font-semibold tracking-[-0.5px] text-gray-900 dark:text-white">
+                          Hi, I'm Khalid.
+                        </h1>
                       </div>
-                      <AnimatePresence>
-                        {(isTypewriterComplete || !isFirstVisit) && (
-                          <motion.div 
-                            className="space-y-4"
-                            initial={isFirstVisit ? { opacity: 0 } : false}
-                            animate={isFirstVisit ? { opacity: 1 } : false}
-                            transition={{
-                              duration: 1.5,
-                              ease: [0.25, 0.1, 0.25, 1]
-                            }}
-                          >
-                            <motion.p 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.6, delay: 0.2 }}
-                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                            >
-                              I'm a researcher, programmer, artist, and writer.
-                            </motion.p>
+                      
+                      <motion.div 
+                        className="space-y-4"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.4,
+                          ease: [0.2, 0.65, 0.3, 0.9]
+                        }}
+                      >
+                        <p className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]">
+                          I'm a researcher, programmer, artist, and writer.
+                        </p>
 
-                            <motion.p 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.4, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
-                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                            >
-                              Lately, I've been thinking a lot about{' '}
-                              <ConceptText text="legal architectures" concept={concepts.legalArchitectures} />,{' '}
-                              <ConceptText text="governance entropy" concept={concepts.governanceEntropy} />,{' '}
-                              <ConceptText text="decision boundaries" concept={concepts.decisionBoundaries} />, and{' '}
-                              <ConceptText text="transitions" concept={concepts.transitions} />.
-                            </motion.p>
+                        <p className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]">
+                          Lately, I've been thinking a lot about{' '}
+                          <ConceptText text="legal architectures" concept={concepts.legalArchitectures} />,{' '}
+                          <ConceptText text="governance entropy" concept={concepts.governanceEntropy} />,{' '}
+                          <ConceptText text="decision boundaries" concept={concepts.decisionBoundaries} />, and{' '}
+                          <ConceptText text="transitions" concept={concepts.transitions} />.
+                        </p>
 
-                            <motion.p 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.4, delay: 0.3, ease: [0.2, 0.65, 0.3, 0.9] }}
-                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                            >
-                              Depending on when you're reading this, I'm working on developing frameworks for compute attribution in AI systems, 
-                              examining how technical and legal definitions of computational resource usage can be reconciled in ways that are 
-                              both meaningful and enforceable.
-                            </motion.p>
+                        <p className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]">
+                          Depending on when you're reading this, I'm working on developing frameworks for compute attribution in AI systems, 
+                          examining how technical and legal definitions of computational resource usage can be reconciled in ways that are 
+                          both meaningful and enforceable.
+                        </p>
 
-                            <motion.p 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.4, delay: 0.4, ease: [0.2, 0.65, 0.3, 0.9] }}
-                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                            >
-                              Prior to this, I was a student at the University of Minnesota where I studied politics, philosophy and econ.
-                            </motion.p>
+                        <p className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]">
+                          Prior to this, I was a student at the University of Minnesota where I studied politics, philosophy and econ.
+                        </p>
 
-                            <motion.p 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.4, delay: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
-                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                            >
-                              Feel free to poke around this website, which serves as a sampling of what I am currently reading, writing, and thinking about.
-                            </motion.p>
+                        <p className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]">
+                          Feel free to poke around this website, which serves as a sampling of what I am currently reading, writing, and thinking about.
+                        </p>
 
-                            <motion.p 
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.4, delay: 0.6, ease: [0.2, 0.65, 0.3, 0.9] }}
-                              className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]"
-                            >
-                              If what you find interests you, <ContactTrigger />
-                            </motion.p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                        <p className="font-mono text-sm text-gray-600 dark:text-gray-300 tracking-[0.2px] leading-[1.7]">
+                          If what you find interests you, <ContactTrigger />
+                        </p>
+                      </motion.div>
                     </main>
                   </div>
                 } />
@@ -380,6 +329,7 @@ function App() {
                 <Route path="/posts/manifesto-draft" element={<ManifestoDraft />} />
                 <Route path="/posts/letting-go" element={<LettingGoPost />} />
                 <Route path="/posts/seamlessness-post" element={<SeamlessnessPost />} />
+                <Route path="/posts/where-connection-went" element={<WhereConnectionWentPost />} />
                 <Route path="/research" element={<Research />} />
               </Routes>
             </motion.div>
