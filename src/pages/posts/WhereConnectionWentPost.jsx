@@ -347,7 +347,7 @@ const WhereConnectionWentPost = () => {
 
 <FadeInSection>
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
-    contradiction? or reveals something about what matters. personal anecdote: during isolation, I discovered something unexpected: long phone calls while walking became my deepest form of connection. not quick catch-ups rushed between meetings or classes, but 3-5 hour conversations with family and friends (including ones I'd struggled to meaningfully connect with due to geographic distance). what's counterintuitive isn't that these calls worked – they worked better than pre-pandemic interactions. without the pressure of limited time or the distractions of a physical setting, conversations reached surprising depths. key differences:
+    contradiction? or reveals something about what matters. personal anecdote: during isolation, I discovered something unexpected: long phone calls while walking around my neighbourhood became one of my deepest form of connection. not quick catch-ups rushed between meetings or classes, but sometimes 3-5 hour conversations with family and friends (including ones I'd struggled to meaningfully connect with due to geographic distance). what's counterintuitive isn't that these calls worked – they worked better than pre-pandemic interactions. without the pressure of limited time or the distractions of a physical setting, conversations reached surprising depths. key differences:
   </p>
   <ul className="list-disc pl-5 mb-8">
     <li>removal of visual attention demands</li>
@@ -428,10 +428,14 @@ I think bereal was the most interesting social app of the last 5 yrs and I used 
 </FadeInSection>
 
 <FadeInSection>
+  <h2 className="font-spectral text-[1.5rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
+    misc thoughts/notes
+  </h2>
+</FadeInSection>
+
+<FadeInSection>
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
-    other misc thoughts/notes to just have
-  <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
-    we can think about connection strength as an integral over time? something like:
+    we could think about connection strength as an integral over time? something like:
     <br />
     <span className="font-mono text-gray-900 dark:text-gray-100">
       S(t) = ∫ q(t) · v(t) dt
@@ -453,7 +457,7 @@ I think bereal was the most interesting social app of the last 5 yrs and I used 
       <li><span className="font-semibold">l(t)</span>: cognitive load (0 to 1)</li>
       <li><span className="font-semibold">m(t)</span>: shared context</li>
     </ul>
-    this feels right intuitively... high bandwidth doesn't help if cognitive load is too high (hello zoom fatigue) or if you're missing context.
+    this feels right intuitively... high bandwidth doesn't help if cognitive load is too high (zoom fatigue) or if you're missing context.
   </p>
 
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
@@ -481,7 +485,7 @@ I think bereal was the most interesting social app of the last 5 yrs and I used 
   </p>
 
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
-    where k is how much we can actually process (~40-60 bits/sec?).
+    where k is how much we're actually able to process (~40-60 bits/sec?).
   </p>
 
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
@@ -504,7 +508,7 @@ I think bereal was the most interesting social app of the last 5 yrs and I used 
     this actually explains a decent amount:
     <ul className="list-disc pl-5 mb-8">
       <li>why bereal felt different (synchronized context, lower cognitive load, higher authenticity)</li>
-      <li>why discord communities are great (sustained low-bandwidth presence, strong context)</li>
+      <li>why discord's great (sustained low-bandwidth presence, strong context)</li>
       <li>why instagram feels empty (high bandwidth but low authenticity, poor context preservation)</li>
       </ul>
           </p>

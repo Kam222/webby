@@ -34,7 +34,7 @@ const footnotes = [
     id: 'lockdown_experiment',
     text: (
       <>
-        The scale of this experiment really was unprecedented - ~3.9 billion ppl experienced some form of lockdown by April 2020 (add citation) while tragic, it represents arguably the largest forced change in human social interaction patterns since urbanization. particularly interesting was the natural A/B test between regions with different lockdown policies, though confounders make clean analysis difficult..don't even want to think about it. <a href="https://tmb.apaopen.org/pub/nonverbal-overload/release/2" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">paper from above</a>.
+        the scale of this experiment really was unprecedented - ~3.9 billion ppl experienced some form of lockdown by April 2020 (add citation) while tragic, it represents arguably the largest forced change in human social interaction patterns since urbanization. particularly interesting was the natural A/B test between regions with different lockdown policies, though confounders make clean analysis difficult..don't even want to think about it. <a href="https://tmb.apaopen.org/pub/nonverbal-overload/release/2" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">paper from above</a>.
       </>
     )
   },
@@ -55,7 +55,7 @@ const footnotes = [
   },
   {
     id: 'callstudy',
-    text: 'Personal study: Call quality ratings (1-10) and modality tracked for 3 months (n=127 calls). Voice calls averaged 7.8/10 vs 6.4/10 for video (p<0.01). Notable confound: self-selection into preferred modalities likely inflates both scores.'
+    text: 'personal study: call quality ratings (1-10) and modality loosely tracked for 3 weeks (n=44 calls). voice calls averaged ~7.8/10 vs 6.4/10 for video (p<0.01). confound worth noting: self-selection into preferred modalities likely inflates both scores.'
   },
   {
     id: 'edison2024',
