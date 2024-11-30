@@ -410,7 +410,7 @@ I think bereal was the most interesting social app of the last 5 yrs and I used 
     watching how gen-z uses tech gives us clues: we oft keep facetimes running while studying just to feel present and connected analagous to how primates maintain cohesion through awareness rather than direct interaction. similarly, the rise of virtual coworking points the same way. See <a href="https://focusmate.com" target="_blank" rel="noopener noreferrer" className="text-blue-600">focusmate.com</a>, <a href="https://cofocus.one" target="_blank" rel="noopener noreferrer" className="text-blue-600">cofocus.one</a>, <a href="https://timeivy.com" target="_blank" rel="noopener noreferrer" className="text-blue-600">timeivy.com</a>. our current social platforms are operating in a local maxima that fails to account for deep structure in human sociality, however the uptick of these examples suggests strong selection pressure for tools that better match our evolved social architectures.
   </p>
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
-    key questions to revisit:
+    questions to revisit:
   </p>
   <ul className="list-disc pl-5 mb-8 font-spectral text-[1.125rem] leading-[1.8] text-gray-800 dark:text-gray-200">
     <li>what's the minimum information density threshold for satisfaction?</li>
@@ -418,19 +418,18 @@ I think bereal was the most interesting social app of the last 5 yrs and I used 
     <li>is "perfect" digital social reward theoretically possible?</li>
   </ul>
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
-    random thought to come back to: spacing effects seem important. but mechanics seem unclear
+    also another random thought to come back to/work in: spacing effects seem important but mechanics seem unclear. maybe a 
     connection to memory consolidation? spaced repetition? 
     <br /><br />
     feels like we're finally starting to understand core principles. next wave of social tech might actually work with rather than against evolved architecture.
     <br /><br />
-    question: what would "human-aligned" social platform primitives look like? start from first principles rather than engagement metrics.
+    what would "human-aligned" social platform primitives look like? start from first principles rather than engagement metrics.
   </p>
 </FadeInSection>
 
 <FadeInSection>
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
-    other thoughts:
-  </p>
+    other misc thoughts/notes to just have
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
     we can think about connection strength as an integral over time? something like:
     <br />
