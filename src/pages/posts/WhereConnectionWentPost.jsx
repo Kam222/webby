@@ -393,9 +393,12 @@ we could think about connection strength as an integral over time? something lik
 </FadeInSection>
 
 <FadeInSection>
-  <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
-    ### the future
-  </p>
+  <h2 className="font-spectral text-[1.5rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
+    the future
+  </h2>
+</FadeInSection>
+
+<FadeInSection>
   <p className="font-spectral text-[1.125rem] leading-[1.8] mb-8 text-gray-800 dark:text-gray-200 font-normal">
 I think bereal was the most interesting social app of the last 5 yrs and I used it almost daily in 2022-23. skeptics correctly predicted it's failure, but they were wrong about it being the newest photos app wrapper. it was the first social product that got tens of millions of people to share normal moements over highlights. the app eventually died, but it proved something important: people are hungry for authentic digital connection. we just haven't built the right thing yet, and i think we're getting closer.
   </p>
