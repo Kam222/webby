@@ -40,6 +40,15 @@ const POSTS_DATA = [
     abstract: "initial thoughts on the seamless integration of AI systems into governance structures",
     slug: "manifesto-draft"
   },
+  {
+    title: "diary: ideas and concepts i think of on a semi-daily basis",
+    date: "2024-09-10",
+    readingTime: "5 min",
+    maturity: "SEED",
+    tags: ["reflections", "ideas", "concepts", "personal growth", "journaling", "creativity"],
+    abstract: "A collection of thoughts and ideas that emerge on a semi-daily basis, exploring various concepts and reflections.",
+    slug: "diary-ideas-concepts"
+  },
 ];
 
 // Add new constant for design system

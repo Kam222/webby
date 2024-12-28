@@ -16,6 +16,7 @@ import Research from './pages/Research';
 import ContactTrigger from './components/ContactTrigger';
 import TypewriterText from './components/TypewriterText';
 import WhereConnectionWentPost from './pages/posts/WhereConnectionWentPost'; 
+import DiaryPost from './pages/posts/DiaryPost.jsx';
 
 // Enhanced theme system with reading modes
 const useTheme = () => {
@@ -330,6 +331,7 @@ function App() {
                 <Route path="/posts/letting-go" element={<LettingGoPost />} />
                 <Route path="/posts/seamlessness-post" element={<SeamlessnessPost />} />
                 <Route path="/posts/where-connection-went" element={<WhereConnectionWentPost />} />
+                <Route path="/posts/diary" element={<DiaryPost />} />
                 <Route path="/research" element={<Research />} />
               </Routes>
             </motion.div>
